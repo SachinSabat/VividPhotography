@@ -43,6 +43,8 @@
 		CAB5115A25EF715C0091EBBD /* GalleryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5115925EF715C0091EBBD /* GalleryRouter.swift */; };
 		CAB5115F25EF716A0091EBBD /* GalleryModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5115E25EF716A0091EBBD /* GalleryModuleBuilder.swift */; };
 		CAB5116425EF72DF0091EBBD /* UINavigationControllerX.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5116325EF72DF0091EBBD /* UINavigationControllerX.swift */; };
+		CAEC580325F11541008C14F5 /* RecentSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC580225F11541008C14F5 /* RecentSearchCell.swift */; };
+		CAEC580825F115E7008C14F5 /* DataBaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEC580725F115E7008C14F5 /* DataBaseUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		CAB5115925EF715C0091EBBD /* GalleryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRouter.swift; sourceTree = "<group>"; };
 		CAB5115E25EF716A0091EBBD /* GalleryModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryModuleBuilder.swift; sourceTree = "<group>"; };
 		CAB5116325EF72DF0091EBBD /* UINavigationControllerX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerX.swift; sourceTree = "<group>"; };
+		CAEC580225F11541008C14F5 /* RecentSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchCell.swift; sourceTree = "<group>"; };
+		CAEC580725F115E7008C14F5 /* DataBaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +274,7 @@
 		CA7E4A8325EEC620004C9448 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CAEC580725F115E7008C14F5 /* DataBaseUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 				CA38B98325EFDFDB00F01AD2 /* SearchVC.swift */,
 				CAB5113A25EF70E90091EBBD /* ImageCell.swift */,
 				CAB5113F25EF70F60091EBBD /* FooterViews.swift */,
+				CAEC580225F11541008C14F5 /* RecentSearchCell.swift */,
 			);
 			path = VIews;
 			sourceTree = "<group>";
@@ -497,8 +503,10 @@
 				CA7E4ABC25EEC7F2004C9448 /* UIViewControllerX.swift in Sources */,
 				CAB5115F25EF716A0091EBBD /* GalleryModuleBuilder.swift in Sources */,
 				CAB5114525EF710B0091EBBD /* GalleryInteractor.swift in Sources */,
+				CAEC580825F115E7008C14F5 /* DataBaseUtils.swift in Sources */,
 				CA7E4A9525EEC676004C9448 /* NetwrokService.swift in Sources */,
 				CA7E4AA925EEC6BE004C9448 /* ImageDownloader.swift in Sources */,
+				CAEC580325F11541008C14F5 /* RecentSearchCell.swift in Sources */,
 				CA7E4ABE25EEC7F2004C9448 /* FontX.swift in Sources */,
 				CAB5114025EF70F60091EBBD /* FooterViews.swift in Sources */,
 				CA7E4A8525EEC649004C9448 /* NetworkAPI.swift in Sources */,

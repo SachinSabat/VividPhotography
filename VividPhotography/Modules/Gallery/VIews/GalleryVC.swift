@@ -35,6 +35,7 @@ final class GalleryVC: UIViewController, GalleryViewInput {
     
     lazy var searchController: UISearchController = {
         let searchVC = SearchVC()
+        searchVC.searchDelegate = self
         let controller = UISearchController(searchResultsController: searchVC)
         if #available(iOS 13.0, *) {
             controller.showsSearchResultsController = true
@@ -42,6 +43,7 @@ final class GalleryVC: UIViewController, GalleryViewInput {
         controller.obscuresBackgroundDuringPresentation = false
         controller.searchResultsUpdater = nil
         controller.searchBar.placeholder = Strings.searchPlaceHolder
+        controller.searchBar.delegate = searchVC
         return controller
     }()
     
@@ -58,6 +60,7 @@ final class GalleryVC: UIViewController, GalleryViewInput {
 
         setupViews()
         themeViews()
+        
         presenter.clearData()
         presenter.searchPhotos(matching: searchText)
 
@@ -122,6 +125,12 @@ final class GalleryVC: UIViewController, GalleryViewInput {
             self.galleryViewModel = viewModel
             self.collectionView.insertItems(at: indexPaths)
         })
+    }
+    
+    func resetViews() {
+        searchController.searchBar.text = nil
+        galleryViewModel = nil
+        collectionView.reloadData()
     }
     
     
@@ -191,3 +200,15 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
     
 }
 
+extension GalleryVC: GallerySearchDelegate {
+    func didTapSearchBar(withText searchText: String) {
+        searchController.isActive = false
+        guard !searchText.isEmpty || searchText != self.searchText else { return }
+        presenter.clearData()
+        
+        self.searchText = searchText
+        searchController.searchBar.text = searchText
+        ImageDownloader.shared.cancelAll()
+        presenter.searchPhotos(matching: searchText)
+    }
+}

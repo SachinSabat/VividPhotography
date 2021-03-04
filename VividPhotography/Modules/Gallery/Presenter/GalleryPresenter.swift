@@ -43,6 +43,8 @@ extension GalleryPresenter: GalleryViewOutput {
         guard isMoreDataAvailable else { return }
         view?.changeViewState(.loading)
         interactor.loadPhotos(matching: imageName, pageNum: pageNumber)
+        if pageNumber == 1 { DataBaseUtils.shared.insertSearchText(object: imageName) }
+
     }
     
     var isMoreDataAvailable: Bool {
@@ -58,6 +60,7 @@ extension GalleryPresenter: GalleryViewOutput {
         totalPages = Constants.defaultTotalCount
         galleryViewModel = nil
         photos = nil
+        view?.resetViews()
         view?.changeViewState(.none)
     }
 }

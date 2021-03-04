@@ -44,6 +44,8 @@ protocol GalleryViewInput: BaseViewInput {
     /// Append items
     func insertImages(with viewModel: GalleryViewModel, at indexPaths: [IndexPath])
     
+    /// Reset the list
+    func resetViews()
 }
 
 //MARK: Presenter
@@ -63,6 +65,8 @@ protocol GalleryModuleInput: AnyObject {
 protocol GalleryViewOutput: AnyObject {
     func searchPhotos(matching imageName: String)
     func clearData()
+    var isMoreDataAvailable: Bool { get }
+
 }
 
 protocol GalleryInteractorOutput: AnyObject  {
