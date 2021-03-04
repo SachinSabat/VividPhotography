@@ -8,8 +8,10 @@
 import UIKit
 
 extension UIView {
+    /// To show loader
     func showSpinner() {
-        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.color = .appBlack()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
@@ -18,23 +20,16 @@ extension UIView {
         activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
+    /// To hide loader
     func hideSpinner() {
         guard let spinner = self.subviews.last as? UIActivityIndicatorView else { return }
         spinner.stopAnimating()
         spinner.removeFromSuperview()
     }
     
+    /// To give corner radius
+    /// - Parameter radius: radius
     func giveCorner(radius: CGFloat) {
-        layer.masksToBounds = true
         layer.cornerRadius = radius
     }
-    
-    func giveShadow(radius: CGFloat){
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 1
-        layer.shadowOffset = .zero
-        layer.shadowRadius = radius
-    }
 }
-
-

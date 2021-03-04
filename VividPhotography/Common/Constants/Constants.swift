@@ -15,9 +15,10 @@ enum Strings {
     static let retry = "Retry"
     static let error = "Error"
     static let close = "close"
-    
+    static let defaulSearchText = "Shiva"
+
     //GalleryVC Content
-    static let appTitle = ""
+    static let appTitle = "Vivid Photos"
     static let searchPlaceHolder = "Search for photos..."
 }
 
@@ -61,7 +62,7 @@ enum Constants {
     static let defaultRadius: CGFloat = 10
     static let defaultPageNum: Int = 1
     static let defaultTotalCount: Int = 0
-    static let defaultPageSize: Int = 20
+    static let defaultPageSize: Int = 14
     static let defaultIconSize: CGFloat = 24
 }
 
@@ -75,5 +76,6 @@ public enum ViewState: Equatable {
 
 //NetworkAPI Constants
 enum APIConstants {
-  
+    static let galleryBaseURL = "https://pixabay.com"
+    static let galleryAPIKey = "20521804-2f66c8697ba60b43f1caa2006"
 }

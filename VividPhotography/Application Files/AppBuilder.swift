@@ -15,8 +15,9 @@ final public class AppBuilder {
     /// - Returns: default response
     @discardableResult
     func setRootViewController(in window: UIWindow?) -> Bool {
-        let vc = ViewController()
+        let vc = GalleryModuleBuilder().buildModule()
         let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.themeNavigationBar()
         window?.rootViewController = navigationController
         //NOTE: Following instance method is responsible for bring the window to the front of the screen
         window?.makeKeyAndVisible()
