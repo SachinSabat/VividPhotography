@@ -17,7 +17,6 @@ final class GalleryIneractor: GalleryInteractorInput {
     }
     
     func loadPhotos(matching imageName: String, pageNum: Int) {
-        print("Gallery Interactor start")
 
         let endPoint = GalleryAPI.search(query: imageName, page: pageNum)
         network.dataRequest(endPoint, objectType: Gallery.self) { [weak self] (result: Result<Gallery, NetworkError>) in

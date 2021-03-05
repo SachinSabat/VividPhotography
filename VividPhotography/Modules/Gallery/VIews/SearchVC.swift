@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Mark:- didTapSearchProtocol implementation
 protocol GallerySearchDelegate: AnyObject {
     func didTapSearchBar(withText searchText: String)
 }
@@ -14,7 +15,7 @@ protocol GallerySearchDelegate: AnyObject {
 final class SearchVC: UIViewController {
     
     weak var searchDelegate: GallerySearchDelegate?
-
+    
     lazy var myTableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -31,13 +32,11 @@ final class SearchVC: UIViewController {
     }
     
     override func viewDidLoad() {
-        print("Search Vc")
-
         super.viewDidLoad()
         view.backgroundColor = .appBackground()
         configureTableView()
     }
-
+    
     private func configureTableView() {
         view.addSubview(myTableView)
         myTableView.pinEdgesToSuperview()
@@ -53,12 +52,13 @@ final class SearchVC: UIViewController {
         }
     }
 }
-
+// Mark:- Extension Of SearchBarDelegate
+//
 extension SearchVC: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
-
+    
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         defer {
             fetchData()
@@ -75,7 +75,8 @@ extension SearchVC: UISearchBarDelegate {
         searchDelegate?.didTapSearchBar(withText: text)
     }
 }
-
+//Mark:- Extension of TableView Delegate & Datasource
+//
 extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

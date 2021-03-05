@@ -15,6 +15,7 @@ enum Strings {
     static let retry = "Retry"
     static let error = "Error"
     static let close = "close"
+    static let delete = "Delete Me"
     static let defaulSearchText = "Shiva"
 
     //GalleryVC Content
@@ -45,6 +46,8 @@ enum APP_FONT_STYLE: String {
 /// App images name should be used from here
 enum APP_IMAGES: String {
     case Recent = "recent"
+    case Delete = "delete"
+
 }
 
 /// App Colors shoud be used from here
@@ -60,9 +63,10 @@ enum Constants {
     static let defaultPadding: CGFloat = 8
     static let numberOfColumns: CGFloat = 3
     static let defaultRadius: CGFloat = 10
-    static let defaultPageNum: Int = 1
+    static let defaultPageNum: Int = 0
+    static let maximumPageNum: Int = 5
     static let defaultTotalCount: Int = 0
-    static let defaultPageSize: Int = 14
+    static let defaultPageSize: Int = 10
     static let defaultIconSize: CGFloat = 24
 }
 

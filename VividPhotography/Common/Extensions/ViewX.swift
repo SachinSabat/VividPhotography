@@ -20,6 +20,16 @@ extension UIView {
         activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
+    func centerInSuperView() {
+        guard let superview = superview else {
+            fatalError("superview is missing for this view")
+        }
+        NSLayoutConstraint.activate([
+            centerXAnchor.constraint(equalTo: superview.centerXAnchor),
+            centerYAnchor.constraint(equalTo: superview.centerYAnchor)
+        ])
+    }
+    
     /// To hide loader
     func hideSpinner() {
         guard let spinner = self.subviews.last as? UIActivityIndicatorView else { return }

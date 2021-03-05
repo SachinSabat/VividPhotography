@@ -46,12 +46,15 @@ protocol GalleryViewInput: BaseViewInput {
     
     /// Reset the list
     func resetViews()
+    
+    func reloadCell(at index: Int, viewModel: GalleryViewModel)
+    
 }
 
 //MARK: Presenter
 protocol GalleryModuleInput: AnyObject {
     
-    var photos: [Photo]? { get set }
+    //   var photos: [Photo]? { get set }
     /// View with object of inputVIew
     var view: GalleryViewInput? { get set }
     
@@ -66,7 +69,7 @@ protocol GalleryViewOutput: AnyObject {
     func searchPhotos(matching imageName: String)
     func clearData()
     var isMoreDataAvailable: Bool { get }
-
+    func didSelectPhoto(at index: Int)
 }
 
 protocol GalleryInteractorOutput: AnyObject  {
@@ -83,13 +86,14 @@ protocol GalleryInteractorInput: AnyObject {
 
 //MARK: Router
 protocol GalleryRouterInput: AnyObject {
+    func showPhotoDetails(with currentIndex: Int, delegate: PageDeletePhotoDelegate, viewModel: PageDetailViewModel)
 }
 
 
 enum GalleryAPI: NetworkAPIEndPoint, URLRequestable {
     
     case search(query: String, page: Int)
-
+    
 }
 
 extension GalleryAPI {

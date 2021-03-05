@@ -9,16 +9,18 @@
 import UIKit
 
 final class GalleryVC: UIViewController, GalleryViewInput {
+    
     var presenter: GalleryViewOutput!
     var viewState: ViewState = .none
     var galleryViewModel: GalleryViewModel?
     var searchText = Strings.defaulSearchText
     
+    // Collection view with image ratio 3:5
     lazy var collectionViewLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         let spacing = Constants.defaultSpacing
         let itemSize: CGFloat = (UIScreen.main.bounds.width - (Constants.numberOfColumns - spacing) - 2) / Constants.numberOfColumns
-        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize*5/3)
         layout.minimumInteritemSpacing = spacing
         layout.minimumLineSpacing = spacing
         layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
@@ -57,13 +59,11 @@ final class GalleryVC: UIViewController, GalleryViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Gallery Vc")
-
+        
         setupViews()
         themeViews()
+        setupPresenter()
         
-        presenter.clearData()
-        presenter.searchPhotos(matching: searchText)
-
     }
     
     // MARK: Private Functions
@@ -76,6 +76,11 @@ final class GalleryVC: UIViewController, GalleryViewInput {
     private func themeViews() {
         view.backgroundColor = .appBackground()
         collectionView.backgroundColor = .appBackground()
+    }
+    
+    private func setupPresenter(){
+        presenter.clearData()
+        presenter.searchPhotos(matching: searchText)
     }
     
     // MARK: configureSearchController
@@ -133,11 +138,19 @@ final class GalleryVC: UIViewController, GalleryViewInput {
         collectionView.reloadData()
     }
     
+    func reloadCell(at index: Int, viewModel: GalleryViewModel) {
+        galleryViewModel = viewModel
+        
+        DispatchQueue.main.async {
+            self.collectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
+        }
+    }
+    
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if #available(iOS 13.0, *), traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-           themeViews()
+            themeViews()
         }
     }
 }
@@ -158,8 +171,12 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
         guard let viewModel = galleryViewModel else {
             return cell
         }
+        
         let imageURL = viewModel.photoUrlAt(indexPath.item)
-        cell.configure(imageURL: imageURL, size: collectionViewLayout.itemSize, indexPath: indexPath)
+        guard let urlString = imageURL.largeImageURL, let imageUrl = URL(string: urlString) else {
+            return cell
+        }
+        cell.configure(imageURL: imageUrl, size: collectionViewLayout.itemSize, indexPath: indexPath)
         return cell
     }
     
@@ -177,7 +194,11 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
             return
         }
         let imageURL = viewModel.photoUrlAt(indexPath.row)
-        ImageDownloader.shared.changeDownloadPriority(for: imageURL)
+        
+        guard let urlString = imageURL.largeImageURL, let imageUrl = URL(string: urlString) else {
+            return
+        }
+        ImageDownloader.shared.changeDownloadPriority(for: imageUrl)
     }
     
     //MARK: UICollectionViewFooter
@@ -198,8 +219,14 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
         }
     }
     
+    // Mark:- DidSelectItemAt Index CollectionView
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.didSelectPhoto(at: indexPath.item)
+    }
 }
 
+// Mark:- Delegate method on didTapSearch Bar
+//
 extension GalleryVC: GallerySearchDelegate {
     func didTapSearchBar(withText searchText: String) {
         searchController.isActive = false

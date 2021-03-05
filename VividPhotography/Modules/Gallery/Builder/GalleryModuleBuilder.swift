@@ -15,8 +15,7 @@ protocol GalleryModuleBuilderProtocol: AnyObject {
 final class GalleryModuleBuilder: GalleryModuleBuilderProtocol {
     
     func buildModule() -> GalleryVC {
-        print("Gallery Module Builder")
-
+        
         let galleryVC = GalleryVC()
         let presenter = GalleryPresenter()
         let network = NetworkAPI()

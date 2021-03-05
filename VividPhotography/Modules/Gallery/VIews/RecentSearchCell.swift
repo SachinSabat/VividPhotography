@@ -48,11 +48,10 @@ class RecentSearchCell: UITableViewCell {
     }
     
     func prepareView() {
-        print("Recent search cell")
-
+        
         contentView.addSubview(recentIconView)
-        recentIconView.pinEdgesEquallyToSuperview(atrributes: [.top, .bottom], constant: Constants.defaultPadding)
-        recentIconView.pinEdgesEquallyToSuperview(atrributes: [.leading], constant: Constants.defaultPadding*2)
+        recentIconView.pinEdgesEquallyToSuperview(atrributes: [.top], constant: Constants.defaultPadding)
+        recentIconView.pinEdgesEquallyToSuperview(atrributes: [.leading], constant: Constants.defaultPadding)
         recentIconView.pinHeightWidth(constant: Constants.defaultIconSize)
         
         contentView.addSubview(titleLabel)
