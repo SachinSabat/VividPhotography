@@ -101,23 +101,23 @@ final class GalleryVC: UIViewController, GalleryViewInput {
     
     //MARK: GalleryViewInput
     func changeViewState(_ state: ViewState) {
-        viewState = state
-        switch state {
-        case .loading:
-            if galleryViewModel == nil {
-                showActivityLoader()
+            viewState = state
+            switch state {
+            case .loading:
+                if galleryViewModel == nil {
+                    showActivityLoader()
+                }
+            case .content:
+                hideActivityLoader()
+            case .error(let message):
+                hideActivityLoader()
+                showAlert(title: Strings.error, message: message, retryAction: { [unowned self] in
+                    self.presenter.searchPhotos(matching: self.searchText)
+                })
+            default:
+                hideActivityLoader()
+                break
             }
-        case .content:
-            hideActivityLoader()
-        case .error(let message):
-            hideActivityLoader()
-            showAlert(title: Strings.error, message: message, retryAction: { [unowned self] in
-                self.presenter.searchPhotos(matching: self.searchText)
-            })
-        default:
-            hideActivityLoader()
-            break
-        }
     }
     
     func displayImages(with viewModel: GalleryViewModel) {

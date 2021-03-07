@@ -10,10 +10,10 @@ import Foundation
 // Struct to delegate data to landing page.
 //
 struct PageDetailViewModel {
-    var photo: Photo
+    var photo: [Photo]
     var index: Int
     
-    init(_ _photo: Photo, _index: Int) {
+    init(_ _photo: [Photo], _index: Int) {
         photo = _photo
         index = _index
     }

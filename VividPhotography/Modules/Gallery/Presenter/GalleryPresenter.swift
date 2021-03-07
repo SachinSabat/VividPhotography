@@ -41,7 +41,7 @@ final class GalleryPresenter: GalleryModuleInput {
     //
     func didSelectPhoto(at index: Int) {
         
-        let gallery = galleryViewModel.photosUrlList[index]
+        let gallery = galleryViewModel.photosUrlList
         let galleryDetailModel = PageDetailViewModel(gallery, _index: index)
         
         router.showPhotoDetails(with: index, delegate: self, viewModel: galleryDetailModel)

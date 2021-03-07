@@ -9,15 +9,16 @@ import Foundation
 
 
 protocol GalleryPageBuilderProtocol {
-    func buildModule(delegate: PageDeletePhotoDelegate,index: Int, viewModel: PageDetailViewModel) -> PagePhotoDetailViewController
+    func buildModule(delegate: PageDeletePhotoDelegate,index: Int, viewModel: PageDetailViewModel) -> PageVC
 }
 
 final class GalleryPageModuleBuilder: GalleryPageBuilderProtocol {
     
-    func buildModule(delegate: PageDeletePhotoDelegate, index: Int, viewModel: PageDetailViewModel) -> PagePhotoDetailViewController {
+    func buildModule(delegate: PageDeletePhotoDelegate, index: Int, viewModel: PageDetailViewModel) -> PageVC {
         
-        let detailViewController = PagePhotoDetailViewController()
+        let detailViewController = PageVC()
         let presenter = GalleryPagePresenter(indexAt: index, viewModel: viewModel)
+        
         let router = PagePhotoDetailRouter()
         
         presenter.view = detailViewController

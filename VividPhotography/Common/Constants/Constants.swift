@@ -15,7 +15,7 @@ enum Strings {
     static let retry = "Retry"
     static let error = "Error"
     static let close = "close"
-    static let delete = "Delete Me"
+    static let delete = "Delete"
     static let defaulSearchText = "Shiva"
 
     //GalleryVC Content
@@ -47,7 +47,6 @@ enum APP_FONT_STYLE: String {
 enum APP_IMAGES: String {
     case Recent = "recent"
     case Delete = "delete"
-
 }
 
 /// App Colors shoud be used from here

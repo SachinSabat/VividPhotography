@@ -8,15 +8,10 @@
 import UIKit
 
 
-final class PagePhotoDetailViewController: UIViewController, GalleryPageViewInput {
-
-    var presenter: GalleryPageDetailViewOutput!
-    
-    fileprivate enum LayoutConstants {
-        static let buttonWidth: CGFloat = 100
-        static let rightpadding: CGFloat = 20
-        static let topPadding: CGFloat = 5
-    }
+final class PagePhotoDetailViewController: UIViewController, BaseViewInput {
+  
+    var index: Int = 0
+    var imageURL: URL?
     
     lazy var photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -25,28 +20,18 @@ final class PagePhotoDetailViewController: UIViewController, GalleryPageViewInpu
         return imageView
     }()
 
-    lazy var deleteButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
-        button.setImage(UIImage(with: .Delete).withRenderingMode(.alwaysTemplate), for: .normal)
-        return button
-    }()
-    
+
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        presenter.onViewDidLoad()
     }
     
     private func setupViews() {
         view.addSubview(photoImageView)
-        view.addSubview(deleteButton)
         setupConstraints()
     }
     
@@ -55,10 +40,9 @@ final class PagePhotoDetailViewController: UIViewController, GalleryPageViewInpu
         photoImageView.widthAnchor.constraint(equalToConstant: Constants.screenWidth - Constants.defaultPadding).isActive = true
         photoImageView.heightAnchor.constraint(equalToConstant: Constants.screenWidth - Constants.defaultPadding).isActive = true
         
-        deleteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: LayoutConstants.rightpadding).isActive = true
-        deleteButton.topAnchor.constraint(equalTo: view.topAnchor, constant: LayoutConstants.topPadding).isActive = true
-        deleteButton.widthAnchor.constraint(equalToConstant: LayoutConstants.buttonWidth).isActive = true
-        deleteButton.heightAnchor.constraint(equalToConstant: LayoutConstants.buttonWidth).isActive = true
+        if let imageURL = imageURL {
+            renderView(with: imageURL)
+        }
     }
     
     func renderView(with imageUrl: URL) {
@@ -72,7 +56,4 @@ final class PagePhotoDetailViewController: UIViewController, GalleryPageViewInpu
         }
     }
     
-    @objc func didTapDeleteButton(_ sender: UIButton) {
-        presenter.didTapDelete()
-    }
 }

@@ -12,7 +12,7 @@ protocol PageDeletePhotoDelegate {
 }
 
 final class GalleryPagePresenter: GalleryPageDetailModuleInput, GalleryPageDetailViewOutput {
-
+ 
     var view: GalleryPageViewInput?
     var router: GalleryPageDetailRouterInput!
     
@@ -31,20 +31,21 @@ final class GalleryPagePresenter: GalleryPageDetailModuleInput, GalleryPageDetai
             guard let self = self else {
                 return
             }
-            guard let urlString = self.viewModel.photo.largeImageURL, let imageUrl = URL(string: urlString) else {
+            guard let urlString = self.viewModel.photo[self.index].largeImageURL, let imageUrl = URL(string: urlString) else {
                 return
             }
-            self.view?.renderView(with: imageUrl)
+            self.view?.renderView(with: imageUrl, index: self.index, viewModel: self.viewModel)
             self.view?.hideActivityLoader()
         }
     }
+    
     
     // Mark:- Delegate index and viewModel to GalleryPresenter
     //
     // Func called on delete button clicked
     //
-    func didTapDelete() {
-        delegate?.userTappedOnDeleteButton(indexAt: self.index, viewModel: viewModel)
+    func didTapDelete(index: Int) {
+        delegate?.userTappedOnDeleteButton(indexAt: index, viewModel: viewModel)
         router.dismiss()
     }
 

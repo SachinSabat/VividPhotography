@@ -9,11 +9,12 @@ import Foundation
 
 // MARK: View Protocol
 protocol GalleryPageViewInput: BaseViewInput {
-    func renderView(with imageUrl: URL)
+    func renderView(with imageUrl: URL, index:Int, viewModel: PageDetailViewModel)
+
 }
 
 protocol GalleryPageDetailViewOutput: AnyObject {
-   func didTapDelete()
+   func didTapDelete(index: Int)
    func onViewDidLoad()
 }
 
@@ -23,11 +24,11 @@ protocol GalleryPageDetailModuleInput: AnyObject {
 }
 
 protocol GalleryPageDetailInteractorInput: AnyObject {
-    
+
 }
 
 protocol GalleryPageDetailInteractorOutput: AnyObject {
-    
+  
 }
 
 protocol GalleryPageDetailRouterInput: AnyObject {
