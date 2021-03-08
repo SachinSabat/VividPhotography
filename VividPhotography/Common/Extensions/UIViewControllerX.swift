@@ -17,6 +17,7 @@ extension UIViewController {
     ///   - retryAction: closure for retry
     func showAlert(title: String, message: String, retryAction: (() -> Void)? = nil) {
         let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertViewController.view.accessibilityIdentifier = "errorDialog"
         if retryAction != nil {
             alertViewController.addAction(UIAlertAction(title: Strings.cancel, style: .default))
         }

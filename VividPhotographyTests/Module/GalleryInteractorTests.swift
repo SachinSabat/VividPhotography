@@ -25,13 +25,13 @@ final class GalleryInteractorTests: XCTestCase {
         presenter = nil
     }
     
-    func testLoadFlickrPhotos() {
+    func testLoadGalleryPhotos() {
         interactor.loadPhotos(matching: "Shiva", pageNum: 1)
         XCTAssertTrue(presenter.gallerySuccessCalled)
         XCTAssertTrue(interactor.loadPhotosCalled)
     }
     
-    func testLoadFlickrPhotosErrorResponse() {
+    func testLoadGalleryPhotosErrorResponse() {
         interactor.loadPhotos(matching: "Shiva", pageNum: -1)
         XCTAssertFalse(presenter.gallerySuccessCalled)
         XCTAssertTrue(interactor.loadPhotosCalled)

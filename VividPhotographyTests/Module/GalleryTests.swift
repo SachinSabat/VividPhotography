@@ -27,11 +27,11 @@ final class GalleryTests: XCTestCase {
         XCTAssertFalse(hitsData.isEmpty)
       //  XCTAssertTrue(hitsData.isEmpty)
 
-        let photo = galleryPhotos.hits?[0]
-        XCTAssertTrue(photo?.previewURL == "https://cdn.pixabay.com/photo/2018/02/05/12/43/deity-3132133_150.jpg")
-        XCTAssertTrue(photo?.largeImageURL == "https://pixabay.com/get/ga103d3901f6514786d2e2258ec938b00fa95fecc049fca35a5f31b79dc1558496fc49bc1e014ec0fe9470a62ce94baa55912f3d9a0491428bf74da7465bd6d51_1280.jpg")
-        XCTAssertEqual(photo?.imageWidth, 3453)
-        XCTAssertTrue(photo?.imageHeight == 2151)
+        let photo = hitsData[0]
+        XCTAssertTrue(photo.previewURL == "https://cdn.pixabay.com/photo/2018/02/05/12/43/deity-3132133_150.jpg")
+        XCTAssertTrue(photo.largeImageURL == "https://pixabay.com/get/ga103d3901f6514786d2e2258ec938b00fa95fecc049fca35a5f31b79dc1558496fc49bc1e014ec0fe9470a62ce94baa55912f3d9a0491428bf74da7465bd6d51_1280.jpg")
+        XCTAssertEqual(photo.imageWidth, 3453)
+        XCTAssertTrue(photo.imageHeight == 2151)
     }
     
     func getGalleryPhotos() -> Gallery {

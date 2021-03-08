@@ -30,7 +30,7 @@ final class GalleryModelTests: XCTestCase {
         }
         
         XCTAssertFalse(galleryHitData.isEmpty)
-        XCTAssertTrue(galleryPhotos.hits?.count == 2)
+        XCTAssertTrue(galleryHitData.count == 2)
    //     XCTAssertTrue(galleryPhotos.hits?.count == 1)
         XCTAssertFalse(galleryPhotos.total == 1364)
         XCTAssertTrue(galleryPhotos.total == 136)

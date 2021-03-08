@@ -74,8 +74,7 @@ final class GalleryPresenterMock: GalleryModuleInput, GalleryViewOutput, Gallery
             return
         }
         XCTAssertFalse(galleryHitData.isEmpty)
-    //    let galleryPhotoList = buildGalleryPhotoUrlList(from: galleryPhotos.hits ?? [])
-        let viewModel = GalleryViewModel(urlList: galleryPhotos.hits ?? [])
+        let viewModel = GalleryViewModel(urlList: galleryHitData)
         self.galleryViewModel = viewModel
         view?.displayImages(with: viewModel)
     }
@@ -89,18 +88,6 @@ final class GalleryPresenterMock: GalleryModuleInput, GalleryViewOutput, Gallery
         view?.resetViews()
     }
     
-    //MARK: FlickrImageURLList
-    func buildGalleryPhotoUrlList(from photos: [Photo]) -> [URL] {
-        let galleryPhotoUrlList = photos.compactMap { (photo) -> URL? in
-            let url = photo.previewURL
-            guard let imageUrl = URL(string: url!) else {
-                return nil
-            }
-            return imageUrl
-        }
-        return galleryPhotoUrlList
-    }
-    
     func didSelectPhoto(at index: Int) {
         selectedPhoto = true
     }
@@ -111,7 +98,6 @@ final class GalleryVCMock: UIViewController, GalleryViewInput {
     func reloadCell(at index: Int, viewModel: GalleryViewModel) {
         
     }
-    
 
     var presenter: GalleryViewOutput!
     var showGalleryImages = false
