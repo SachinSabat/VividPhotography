@@ -5,6 +5,7 @@ Vivid Photography Application using Swift 5, VIPER Architecture, URLSession, Ima
 
 VividPhotography is a sample application to show images depending on user searched text. By default, It fetches data of a particular hardcoded type of text.
 
+There is two branch Develop and FS--UIPageViewController. UIPageViewController with delete and UITestCases functionality is in FS--UIPageViewController branch.
 ## On Develop Branch
 ## Features of Application
 
@@ -19,11 +20,13 @@ VividPhotography is a sample application to show images depending on user search
 - [x] Image Cached
 - [x] Core Data used to store search result
 - [x] Helpfull Extensions
+- [x] Unit test cases
 
 ## On FS--UIPageViewController Branch
 ## Features of Application
 - [x] UIPageViewController added for swiping images on PageDetailVC
 - [x] Delete Images on PageDetailVC 
+- [x] UITest & Unit test cases
 
 
 ## Meta
